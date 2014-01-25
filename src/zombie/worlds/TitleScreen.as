@@ -32,12 +32,20 @@ package zombie.worlds
 			add(btShowCredits);
 			
             var splashText:Text = new Text("POWER OF LOVE");
-            splashText.color = 0x00ff00;
-            splashText.size = 32;
+            splashText.color = 0xff0000;
+            splashText.size = 64;
             var splashEntity:Entity = new Entity(0,0,splashText);
             splashEntity.x = (FP.width/2)-(splashText.width/2);
             splashEntity.y = 100;
             add(splashEntity);
+			
+			var infoText:Text = new Text("Global Game Jam 2014");
+            infoText.color = 0xffffff;
+            infoText.size = 16;
+            var infoEntity:Entity = new Entity(0,0,infoText);
+            infoEntity.x = (FP.width/2)-(infoText.width/2);
+            infoEntity.y = 500;
+            add(infoEntity);
 		}
 		
 		public function NewGame() : void
