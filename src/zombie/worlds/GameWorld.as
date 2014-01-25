@@ -2,6 +2,8 @@ package zombie.worlds
 {
 	import fplib.maping.EntityCreator;
 	import fplib.maping.OgmoMap;
+    import net.flashpunk.graphics.Spritemap;
+    import net.flashpunk.graphics.Text;
 	import net.flashpunk.graphics.Tilemap;
 	import net.flashpunk.Sfx;
 	import zombie.entities.GameManager;
@@ -12,6 +14,7 @@ package zombie.worlds
 	import net.flashpunk.graphics.Backdrop;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.masks.Grid;
+    import zombie.entities.OldMan;
 	
 	/**
 	 * ...
@@ -20,6 +23,9 @@ package zombie.worlds
 	public class GameWorld extends OgmoMap
 	{
 		private var _gameManager : GameManager;
+        private var _oldMan : OldMan;
+        private var _oldManText:Text;
+        private var _oldManTextEnt:Entity;
 		
 		protected var _evilMainTile : Tilemap;		
 		protected var _evilSecondaryTile : Tilemap;
@@ -29,11 +35,35 @@ package zombie.worlds
 		public function GameWorld(levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, entityCreator : EntityCreator, bgmAsset : Class = null) 
 		{
 			super(levelAsset, mainTileSetAsset, secondaryTileSetAsset, backgroundAsset, entityCreator, bgmAsset);
-			
-			_gameManager = new GameManager();
-			
-			add(_gameManager);
+            
+            _gameManager = new GameManager();
+            _oldMan = new OldMan();
+            
+            _oldManText = new Text("");
+            _oldManText.size = 12;
+            _oldManText.color = 0x00ff00;
+            
+            _oldMan.layer = -1000;
+            
+            
+            _oldManTextEnt = new Entity(0, 0, _oldManText);
+            _oldManTextEnt.graphic.scrollX = _oldManTextEnt.graphic.scrollY = 0;
+            add(_oldManTextEnt);
+            add(_gameManager);
+            add(_oldMan);
+            
+            setOldMan(false, "Save as many people as you can!");
 		}
+        
+        private function setOldMan(evil : Boolean, text : String) : void
+        {
+            _oldManText.text = text;
+            _oldMan.setEvil(evil);
+            _oldMan.x = ((FP.width / 2 - (_oldMan.width + _oldManText.textWidth))) / 2;
+            _oldMan.y = (FP.height / 2 - _oldMan.height);
+            _oldManTextEnt.x = _oldMan.x + _oldMan.width;
+            _oldManTextEnt.y = _oldMan.y + (_oldMan.height - _oldManText.height)/ 2;
+        }
 		
 		//{ region Constructor Helper Methods
 		/**
@@ -135,9 +165,8 @@ package zombie.worlds
 				_secondaryTileLayerEntity.graphic = _evilSecondaryTile;
 				
 				_isEvil = true;
+                setOldMan(true, "Get as many people as you can!");
 			}
-			
-			
 		}
 		
 		public function get IsEvil( ) : Boolean

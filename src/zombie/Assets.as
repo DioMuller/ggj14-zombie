@@ -28,6 +28,8 @@ package zombie
 		[Embed(source = "../../assets/images/npc-zombie-03.png")] public static const SPRITE_NPC_ZOMBIE_03 : Class;
 		[Embed(source = "../../assets/images/npc-normal-04.png")] public static const SPRITE_NPC_NORMAL_04 : Class;
 		[Embed(source = "../../assets/images/npc-zombie-04.png")] public static const SPRITE_NPC_ZOMBIE_04 : Class;
+        
+        [Embed(source="../../assets/images/oldman.png")] public static const SPRITE_OLDMAN : Class;
 		
 		public static var SPRITE_NPC_NORMAL : Array = [SPRITE_NPC_NORMAL_01, SPRITE_NPC_NORMAL_02, SPRITE_NPC_NORMAL_03, SPRITE_NPC_NORMAL_04];
 		public static var SPRITE_NPC_ZOMBIE : Array = [SPRITE_NPC_ZOMBIE_01, SPRITE_NPC_ZOMBIE_02, SPRITE_NPC_ZOMBIE_03, SPRITE_NPC_ZOMBIE_04];
