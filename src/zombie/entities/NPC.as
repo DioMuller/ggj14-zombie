@@ -21,13 +21,15 @@ package zombie.entities
 		{
 			super(x, y);
 			
-			animation = new Spritemap(Assets.SPRITE_NPC_ZOMBIE, 16, 16);
+			var num : int = int( Math.round( Math.random() * 3 ) );
+			
+			animation = new Spritemap(Assets.SPRITE_NPC_ZOMBIE[num], 16, 16);
 			animation.add("stand", [6, 7, 8], 5, true);
 			animation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
 			animation.add("hug", [12, 13, 14], 3, false);
 			animation.scale = 2;
 			
-			_humanAnimation = new Spritemap(Assets.SPRITE_NPC_NORMAL, 16, 16);
+			_humanAnimation = new Spritemap(Assets.SPRITE_NPC_NORMAL[num], 16, 16);
 			_humanAnimation.add("stand", [6, 7, 8], 5, true);
 			_humanAnimation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
 			_humanAnimation.add("hug", [12, 13, 14], 3, false);
