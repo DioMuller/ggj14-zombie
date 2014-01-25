@@ -64,7 +64,7 @@ package fplib.maping
 			_mapWidth = xmlData["@width"];
 			_mapHeight = xmlData["@height"];
 			// TODO: Load from file?
-			_tileSize = 32;
+			_tileSize = 16;
 			
 			// Loads a backdrop.
 			_background = new Backdrop(backgroundAsset);

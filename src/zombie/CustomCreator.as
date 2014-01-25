@@ -15,11 +15,11 @@ package zombie
 		{
 			if ( type == "player" )
 			{
-				return new Player( xml["@x"] as Number, xml["@y"] as Number  );
+				return new Player( int(xml["@x"]), int(xml["@y"])  );
 			}
 			else if ( type == "enemy")
 			{
-				return new NPC( xml["@x"] as Number, xml["@y"] as Number  );
+				return new NPC( int(xml["@x"]), int(xml["@y"])  );
 			}
 			
 			return null;

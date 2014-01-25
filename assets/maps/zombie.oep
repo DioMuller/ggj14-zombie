@@ -49,7 +49,7 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <ExportMode>CSV</ExportMode>
+      <ExportMode>XML</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>SecondaryLayer</Name>
@@ -61,7 +61,7 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <ExportMode>CSV</ExportMode>
+      <ExportMode>XML</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Entities</Name>

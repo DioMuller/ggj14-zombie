@@ -13,6 +13,7 @@ package zombie.entities
 			super(x, y);
 			
 			// TODO: Initialize NPC here.
+			
 		}
 		
 	}

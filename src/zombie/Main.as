@@ -25,6 +25,10 @@ package zombie
 						new CustomCreator() );
 		}
 		
+		override public function init():void
+		{
+			trace("FlashPunk has started successfully!");
+		}
 	}
 	
 }
