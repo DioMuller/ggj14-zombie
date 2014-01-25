@@ -22,7 +22,7 @@ package zombie.worlds
 		
 		public function EndScreen() 
 		{
-			var titleText:Text = new Text("You 'saved' " + GameManager.score + " people.");
+			var titleText:Text = new Text("You zombified " + GameManager.score + " people.");
             var textEntity:Entity = new Entity(0,0,titleText);
             textEntity.x = (FP.width/2)-(titleText.width/2);
             textEntity.y = (FP.height/2)-(titleText.height/2) - 60;
