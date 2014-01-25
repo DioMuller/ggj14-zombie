@@ -133,6 +133,11 @@ package fplib.maping
 		}
 		//} endregion Constructor Helper Methods
 		
+		
+		public function stopMusic() : void
+		{
+			_sfx.stop();
+		}
 	}
 
 }

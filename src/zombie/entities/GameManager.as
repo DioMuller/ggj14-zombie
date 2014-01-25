@@ -1,10 +1,12 @@
 package zombie.entities 
 {
 	import fplib.base.GameEntity;
+	import fplib.maping.OgmoMap;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.FP;
 	import zombie.behaviors.DebugInfoBehavior;
+	import zombie.worlds.EndScreen;
 	
 	/**
 	 * ...
@@ -39,6 +41,14 @@ package zombie.entities
 			super.update();
 			
 			timer -= FP.elapsed;
+			
+			if ( timer < 0 )
+			{
+				(FP.world as OgmoMap).stopMusic();
+				FP.screen.scaleX = 1;
+				FP.screen.scaleY = 1;
+				FP.world = new EndScreen();
+			}
 			
 			(graphic as Text).text = "Score: " + score + " Time: " + timer.toFixed(0);
 		}

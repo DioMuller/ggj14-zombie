@@ -6,7 +6,7 @@ package zombie
 	import net.flashpunk.FP;
 	import fplib.maping.OgmoMap;
 	import zombie.entities.GameManager;
-	import zombie.worlds.GameWorld;
+	import zombie.worlds.TitleScreen;
 	
 	/**
 	 * ...
@@ -19,13 +19,7 @@ package zombie
 		{
 			super(800, 600, 60, false);
 			
-			FP.world = new GameWorld(
-						Assets.MAP_MAIN,
-						Assets.IMAGE_TILESET,
-						Assets.IMAGE_TILESET,
-						Assets.IMAGE_BACKGROUND,
-						new CustomCreator(),
-						Assets.MUSIC_BGM01);
+			FP.world = new TitleScreen();
 		}
 		
 		override public function init():void

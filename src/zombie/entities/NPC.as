@@ -16,7 +16,7 @@ package zombie.entities
 		{
 			super(x, y);
 			
-			animation = new Spritemap(Assets.SPRITE_NPC_00, 16, 16);
+			animation = new Spritemap(Assets.SPRITE_MAIN_04, 16, 16);
 			animation.add("stand", [6, 7, 8], 5, true);
 			animation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
 			animation.scale = 2;

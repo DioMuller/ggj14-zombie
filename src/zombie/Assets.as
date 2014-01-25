@@ -28,8 +28,14 @@ package zombie
 		[Embed(source = "../../assets/images/NPC 03.png")] public static const SPRITE_NPC_03 : Class;
 		[Embed(source = "../../assets/images/NPC 04.png")] public static const SPRITE_NPC_04 : Class;
 		
+		/* BUTTON */
+		[Embed(source = "../../assets/images/ButtonBase.png")] public static const BUTTON_NORMAL : Class;
+		[Embed(source = "../../assets/images/ButtonOver.png")] public static const BUTTON_OVER : Class;
+		[Embed(source = "../../assets/images/ButtonPressed.png")] public static const BUTTON_PRESSED : Class;
+		
 		/* MUSIC */
-		[Embed(source = "../../assets/music/bgm01.mp3")] public static const MUSIC_BGM01 : Class;
+		[Embed(source = "../../assets/music/mus loop.mp3")] public static const MUSIC_BGM01 : Class;
+		[Embed(source = "../../assets/music/zumclov.mp3")] public static const MUSIC_CREDITS : Class;
 	}
 
 }
