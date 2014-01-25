@@ -59,7 +59,12 @@ package zombie.entities
 				FP.world = new EndScreen();
 			}
 			
-			(graphic as Text).text = "Score: " + score + " Time: " + timer.toFixed(0);
+			if( timer > 1.5 ) {
+				(graphic as Text).text = "Score: " + score + " Time: " + timer.toFixed(0);
+			}
+			else {
+				(graphic as Text).text = "Score: " + score + " Time: 1";
+			}
 		}
 		
 		public static function reset() : void
