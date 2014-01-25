@@ -17,6 +17,8 @@ package zombie
 		[Embed(source = "../../assets/maps/MainMap.oel", mimeType = "application/octet-stream")] public static const MAP_MAIN : Class;
 		
 		/* SPRITES */
+		[Embed(source = "../../assets/images/main-normal.png")] public static const SPRITE_MAIN_NORMAL : Class;
+		
 		[Embed(source = "../../assets/images/MainCharacter 00.png")] public static const SPRITE_MAIN_00 : Class;
 		[Embed(source = "../../assets/images/MainCharacter 01.png")] public static const SPRITE_MAIN_01 : Class;
 		[Embed(source = "../../assets/images/MainCharacter 02.png")] public static const SPRITE_MAIN_02 : Class;
