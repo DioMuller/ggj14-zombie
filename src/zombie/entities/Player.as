@@ -26,6 +26,8 @@ package zombie.entities
 			
 			setHitbox(8, 32, -8, 0);
 			
+			type = "player";
+			
 			addBehavior(new CameraBehavior());
 			addBehavior(new ControlableBehavior());
 		}
