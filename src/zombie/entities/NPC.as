@@ -35,13 +35,13 @@ package zombie.entities
 		{
 			super.update();
 			
-			if ( collide("player", x, y) )
+			if ( collide("player", x, y) && type == "enemy" )
 			{
 				TurnIntoNPC();
 			}
 		}
 		
-		public function TurnIntoNPC()
+		public function TurnIntoNPC() : void
 		{
 			type = "npc";
 			
@@ -49,6 +49,8 @@ package zombie.entities
 			animation.add("stand", [6, 7, 8], 5, true);
 			animation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
 			animation.scale = 2;
+			
+			GameManager.score++;
 			
 			graphic = animation;
 		}

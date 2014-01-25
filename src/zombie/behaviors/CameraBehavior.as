@@ -20,8 +20,8 @@ package zombie.behaviors
 		{
 			super.update();
 			
-			FP.camera.x = Math.max( 0, Math.min((1920 - FP.screen.width), parent.position.X - 100));
-			FP.camera.y = Math.max( 0, Math.min((1080 - FP.screen.height), parent.position.Y - 100));
+			FP.camera.x = Math.max( 0, Math.min((1920 - FP.screen.width + FP.screen.width/2 ), parent.position.X - 100));
+			FP.camera.y = Math.max( 0, Math.min((1080 - FP.screen.height + FP.screen.height/2 ), parent.position.Y - 100));
 		}
 		
 	}

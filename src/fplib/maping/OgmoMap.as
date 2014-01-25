@@ -81,7 +81,7 @@ package fplib.maping
 			_background.scrollX = 0.5;
 			_background.scrollY = 0.5;
 			_backgroundEntity = new Entity( 0, 0, _background );
-			_backgroundEntity.layer = 10001;
+			_backgroundEntity.layer = 1001;
 			add(_backgroundEntity);
 			
 			// Loads collision layer.
@@ -92,7 +92,7 @@ package fplib.maping
 			_mapGridEntity = new Entity( 0, 4, _mapImage, _mapGrid );
 			_mapGridEntity.visible = false;
 			_mapGridEntity.type = "solid";
-			_mapGridEntity.layer = 10000;
+			_mapGridEntity.layer = 1000;
 			add(_mapGridEntity);
 			
 			// Load main tileset layer
@@ -104,7 +104,7 @@ package fplib.maping
 				_mainTileLayer.setTile( int( x["@x"] ), int( x["@y"]), int( x["@id"] ) );
 			}
 			_mainTileLayerEntity = new Entity(0, 0, _mainTileLayer );
-			_mainTileLayerEntity.layer = 9999;
+			_mainTileLayerEntity.layer = 999;
 			add(_mainTileLayerEntity);
 			
 			// Load secondary tileset layer
@@ -114,7 +114,7 @@ package fplib.maping
 				_secondaryTileLayer.setTile( int( x["@x"] ), int( x["@y"]), int( x["@id"] ) );
 			}
 			_secondaryTileLayerEntity = new Entity(0, 0, _secondaryTileLayer );
-			_secondaryTileLayerEntity.layer = -9999;
+			_secondaryTileLayerEntity.layer = -999;
 			add(_secondaryTileLayerEntity);
 			
 			createEntities(xmlData["Entities"]);

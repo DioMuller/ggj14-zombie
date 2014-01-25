@@ -5,6 +5,8 @@ package zombie
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import fplib.maping.OgmoMap;
+	import zombie.entities.GameManager;
+	import zombie.worlds.GameWorld;
 	
 	/**
 	 * ...
@@ -17,7 +19,7 @@ package zombie
 		{
 			super(800, 600, 60, false);
 			
-			FP.world = new OgmoMap(
+			FP.world = new GameWorld(
 						Assets.MAP_MAIN,
 						Assets.IMAGE_TILESET,
 						Assets.IMAGE_TILESET,
