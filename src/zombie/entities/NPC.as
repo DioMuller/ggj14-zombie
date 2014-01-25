@@ -1,7 +1,9 @@
 package zombie.entities 
 {
 	import fplib.base.GameEntity;
+	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.graphics.Text;
 	import zombie.Assets;
 	import zombie.behaviors.ZombieBehavior;
 	import net.flashpunk.FP;
@@ -16,6 +18,16 @@ package zombie.entities
 		private var _hugging : Boolean = false;
 		protected var _isZombie : Boolean = false;
 		protected var _humanAnimation : Spritemap;
+		
+		private var zombieNpcMessage: Array;
+		private var zombieSavedMessage: Array;
+		private var humanNpcMessage: Array;
+		private var humanZombifiedMessage: Array;
+		
+		public var _baloonText:Text;
+		public var _baloonEntity:Entity;
+		public var _baloonStr:String;
+		public var _baloonTextTimer:Number;
 		
 		public function NPC(x:Number, y:Number) 
 		{
@@ -42,10 +54,64 @@ package zombie.entities
 			addBehavior(new ZombieBehavior());
 			
 			type = "enemy";
+			
+			zombieNpcMessage = [
+				"GAHH!",
+				"BLHRRHHRH!",
+				"BRAINS",
+				"BR41NNSS",
+				"#GGJCWB"
+			];
+			
+			zombieSavedMessage = [
+				"Thank you!",
+				"I love you Mr!",
+				"I almost died due to fatigue! Can't program so much!",
+				"Help the others please!",
+				"I'll follow you!"
+			];
+			
+			humanNpcMessage = [
+				"HEEEELLLLPPP A ZOMBIEEEE",
+				"OH NO A PROGRAMER BROKE FREE!",
+				"APOCALYPSE IS COMING!",
+				"Don't get any closer!",
+				"NOOOOOOOOOOOO!!!!!!"
+			];
+			
+			humanZombifiedMessage = [
+				"AGHHH",
+				"HE GOT ME!",
+				"BURRRRR",
+				"BRAAAAINNNNNNSSS",
+				"..............."
+			];
 		}
 		
 		override public function update():void 
 		{
+			
+			if (!_baloonEntity)
+			{
+				_baloonText = new Text("");
+				_baloonText.size = 8;
+				_baloonText.color = 0xffff00;
+				_baloonEntity = new Entity(x, y - 15, _baloonText);
+				_baloonEntity.layer = -2000;
+				FP.world.add(_baloonEntity);
+				_baloonTextTimer = 0;
+				randomZombieNpcMessage();
+			}
+			
+			_baloonEntity.x = x;
+			_baloonEntity.y = y - 15;
+			_baloonTextTimer -= FP.elapsed;
+			if (_baloonTextTimer <= 0) {
+				_baloonStr = "";
+			}
+			
+			(_baloonEntity.graphic as Text).text = _baloonStr;
+			
 			if ( !_hugging )
 			{
 				super.update();
@@ -67,6 +133,13 @@ package zombie.entities
 					
 					(graphic as Spritemap).play("hug");
                     (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
+					
+					if (!(FP.world as GameWorld).IsEvil) {
+						randomZombieSavedMessage(true);
+					}
+					else {
+						randomHumanZombifiedMessage(true);
+					}
 				}
 			}
 			else
@@ -106,6 +179,42 @@ package zombie.entities
 			}
 			
 			_isZombie = !_isZombie;
+		}
+		
+		public function randomZombieNpcMessage(override:Boolean = false) : void
+		{
+			if(_baloonStr == "" || override) {
+				_baloonStr = zombieNpcMessage[int(Math.random() * (zombieNpcMessage.length-1))];
+				_baloonTextTimer = 2;
+				_baloonText.color = 0xff5555;
+			}
+		}
+		
+		public function randomZombieSavedMessage(override:Boolean = false) : void
+		{
+			if(_baloonStr == "" || override) {
+				_baloonStr = zombieSavedMessage[int(Math.random() * (zombieSavedMessage.length-1))];
+				_baloonTextTimer = 2;
+				_baloonText.color = 0xffff00;
+			}
+		}
+		
+		public function randomHumanNpcMessage(override:Boolean = false) : void
+		{
+			if (_baloonStr == "" || override) {
+				_baloonStr = humanNpcMessage[int(Math.random() * (humanNpcMessage.length-1))];
+				_baloonTextTimer = 2;
+				_baloonText.color = 0xffff00;
+			}
+		}
+		
+		public function randomHumanZombifiedMessage(override:Boolean = false) : void
+		{
+			if(_baloonStr == "" || override) {
+				_baloonStr = humanZombifiedMessage[int(Math.random() * (humanZombifiedMessage.length-1))];
+				_baloonTextTimer = 2;
+				_baloonText.color = 0xff5555;
+			}
 		}
 		
 	}

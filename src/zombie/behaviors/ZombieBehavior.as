@@ -5,6 +5,8 @@ package zombie.behaviors
 	import fplib.math.Vector2D
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Spritemap;
+	import zombie.entities.NPC;
+	import zombie.worlds.GameWorld;
 	
 	/**
 	 * ...
@@ -37,6 +39,12 @@ package zombie.behaviors
 					desiredVelocity.normalize();
 					desiredVelocity = Vector2D.multiply(desiredVelocity, FP.elapsed * 30);
 					(parent.graphic as Spritemap).play("run");
+					if (!(FP.world as GameWorld).IsEvil) {
+						(parent as NPC).randomZombieNpcMessage();
+					}
+					else {
+						(parent as NPC).randomHumanNpcMessage();
+					}
 				}
 				else
 				{

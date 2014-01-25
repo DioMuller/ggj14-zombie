@@ -39,7 +39,7 @@ package zombie.entities
 			graphic = animation;
 			
 			setHitbox(8, 32, -8, 0);
-			
+			layer = -2000;
 			type = "player";
 			
 			addBehavior(new CameraBehavior());
@@ -48,6 +48,7 @@ package zombie.entities
 		
 		override public function update():void 
 		{
+			
 			if (  ((FP.world as GameWorld).IsEvil && ! _isZombie) ||
 			(!(FP.world as GameWorld).IsEvil && _isZombie) )
 			{

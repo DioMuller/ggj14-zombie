@@ -48,6 +48,7 @@ package zombie.worlds
             
             _oldManTextEnt = new Entity(0, 0, _oldManText);
             _oldManTextEnt.graphic.scrollX = _oldManTextEnt.graphic.scrollY = 0;
+			_oldManTextEnt.layer = -1000;
             add(_oldManTextEnt);
             add(_gameManager);
             add(_oldMan);
