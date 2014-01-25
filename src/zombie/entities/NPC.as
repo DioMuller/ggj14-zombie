@@ -64,7 +64,7 @@ package zombie.entities
 					_hugging = true;
 					
 					(graphic as Spritemap).play("hug");
-                    (graphic as Spritemap).flipped = p.animation.flipped;
+                    (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
 				}
 			}
 			else
