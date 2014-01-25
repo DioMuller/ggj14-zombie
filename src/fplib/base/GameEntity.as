@@ -32,6 +32,9 @@ package fplib.base
 		public function GameEntity( x:Number = 0, y:Number = 0 ) 
 		{
 			position = new Vector2D(x, y);
+			this.x = x;
+			this.y = y;
+			position.update();
 			_behaviors = new Vector.<Behavior>();
 		}
 		//} region Constructor

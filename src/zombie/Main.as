@@ -22,7 +22,8 @@ package zombie
 						Assets.IMAGE_TILESET,
 						Assets.IMAGE_TILESET,
 						Assets.IMAGE_BACKGROUND,
-						new CustomCreator() );
+						new CustomCreator(),
+						Assets.MUSIC_BGM01);
 		}
 		
 		override public function init():void

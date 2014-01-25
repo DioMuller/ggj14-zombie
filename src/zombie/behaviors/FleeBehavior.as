@@ -13,7 +13,7 @@ package zombie.behaviors
 	{
 		private var _target : GameEntity = null;
 		
-		public var minimumDistance = 100;
+		public var minimumDistance : Number = 100;
 		
 		public function FleeBehavior() 
 		{
@@ -26,9 +26,8 @@ package zombie.behaviors
 			{
 				_target = FP.world.nearestToEntity("player", parent) as GameEntity;
 			}
-			else
-			{
-			
+			else if( parent.type == "enemy" )
+			{			
 				var desiredVelocity : Vector2D = Vector2D.subtract(parent.position, _target.position);
 				var distance : Number = desiredVelocity.Size;
 				

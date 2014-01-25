@@ -27,6 +27,9 @@ package zombie
 		[Embed(source = "../../assets/images/NPC 02.png")] public static const SPRITE_NPC_02 : Class;
 		[Embed(source = "../../assets/images/NPC 03.png")] public static const SPRITE_NPC_03 : Class;
 		[Embed(source = "../../assets/images/NPC 04.png")] public static const SPRITE_NPC_04 : Class;
+		
+		/* MUSIC */
+		[Embed(source = "../../assets/music/bgm01.mp3")] public static const MUSIC_BGM01 : Class;
 	}
 
 }

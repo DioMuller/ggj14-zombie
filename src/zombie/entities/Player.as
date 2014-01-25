@@ -1,6 +1,7 @@
 package zombie.entities 
 {
 	import fplib.base.GameEntity;
+	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Spritemap;
 	import zombie.behaviors.CameraBehavior;
 	import zombie.Assets;
@@ -31,7 +32,6 @@ package zombie.entities
 			addBehavior(new CameraBehavior());
 			addBehavior(new ControlableBehavior());
 		}
-		
 	}
 
 }

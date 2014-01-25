@@ -8,6 +8,7 @@ package fplib.maping
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Tilemap;
 	import net.flashpunk.masks.Grid;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
 	
 	/**
@@ -35,13 +36,15 @@ package fplib.maping
 		private var _secondaryTileLayerEntity : Entity;
 		
 		private var _entityCreator : EntityCreator;
+		
+		private var _sfx : Sfx;
 		//} endregion Attributes
 		
 		//{ region Constructor
-		public function OgmoMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, entityCreator : EntityCreator ) 
+		public function OgmoMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, entityCreator : EntityCreator, bgmAsset : Class = null ) 
 		{ 
 			_entityCreator = entityCreator;
-			createMap( levelAsset, mainTileSetAsset, secondaryTileSetAsset, backgroundAsset );
+			createMap( levelAsset, mainTileSetAsset, secondaryTileSetAsset, backgroundAsset, bgmAsset );
 		}
 		//} endregion Constructor
 		
@@ -53,9 +56,15 @@ package fplib.maping
 		 * @param	secondaryTileSetAsset Secondary Tileset asset reference.
 		 * @param	backgroundAsset Background asset reference.
 		 */
-		private function createMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class ) : void
+		private function createMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, bgmAsset : Class ) : void
 		{
 			//TODO: Load from any number of tilesets?
+			
+			if ( bgmAsset ) 
+			{
+				_sfx = new Sfx(bgmAsset);
+				_sfx.loop();
+			}
 			
 			// Loads XML.
 			var xmlData : XML = FP.getXML( levelAsset );
@@ -109,8 +118,6 @@ package fplib.maping
 			add(_secondaryTileLayerEntity);
 			
 			createEntities(xmlData["Entities"]);
-			
-			
 		}
 		
 		public function createEntities( xmlData : XMLList ) : void
