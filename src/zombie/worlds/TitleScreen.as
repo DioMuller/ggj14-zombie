@@ -41,7 +41,7 @@ package zombie.worlds
 			FP.world = new GameWorld(
 						Assets.MAP_MAIN,
 						Assets.IMAGE_TILESET,
-						Assets.IMAGE_TILESET,
+						Assets.IMAGE_EVILTILE,
 						Assets.IMAGE_BACKGROUND,
 						new CustomCreator(),
 						Assets.MUSIC_BGM01);
