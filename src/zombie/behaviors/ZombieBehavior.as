@@ -4,6 +4,7 @@ package zombie.behaviors
 	import fplib.base.GameEntity;
 	import fplib.math.Vector2D
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Spritemap;
 	
 	/**
 	 * ...
@@ -35,12 +36,12 @@ package zombie.behaviors
 				{
 					desiredVelocity.normalize();
 					desiredVelocity = Vector2D.multiply(desiredVelocity, FP.elapsed * 30);
-					parent.animation.play("run");
+					(parent.graphic as Spritemap).play("run");
 				}
 				else
 				{
 					desiredVelocity = Vector2D.ZERO;
-					parent.animation.play("stand");
+					(parent.graphic as Spritemap).play("stand");
 				}
 				
 				parent.position = Vector2D.add(parent.position, desiredVelocity);
@@ -52,7 +53,7 @@ package zombie.behaviors
 
 				desiredVelocitySeek.normalize();
 				desiredVelocitySeek = Vector2D.multiply(desiredVelocitySeek, FP.elapsed * 45);
-				parent.animation.play("run");
+				(parent.graphic as Spritemap).play("run");
 				
 				parent.position = Vector2D.add(parent.position, desiredVelocitySeek);
 			}
