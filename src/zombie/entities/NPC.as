@@ -62,19 +62,19 @@ package zombie.entities
 					y = p.y;
 					x = p.x;
 					
-					TurnIntoNPC();
-					
 					p.hug();
 					_hugging = true;
 					
 					(graphic as Spritemap).play("hug");
-                    (graphic as Spritemap).flipped = p.animation.flipped;
+                    (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
 				}
 			}
 			else
 			{
-				if ((graphic as Spritemap).complete)
+                if ((graphic as Spritemap).complete) {
+                    TurnIntoNPC();
                     _hugging = false;
+                }
 			}
 		}
 		
