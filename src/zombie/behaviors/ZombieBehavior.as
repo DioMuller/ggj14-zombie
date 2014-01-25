@@ -13,7 +13,7 @@ package zombie.behaviors
 	public class ZombieBehavior extends Behavior
 	{
 		private var _target : GameEntity = null;
-		
+		private var _minDistance: Number = Math.random() * 90 + 10;
 		public var minimumDistance : Number = 100;
 		
 		public function ZombieBehavior() 
@@ -55,7 +55,8 @@ package zombie.behaviors
 				desiredVelocitySeek = Vector2D.multiply(desiredVelocitySeek, FP.elapsed * 45);
 				(parent.graphic as Spritemap).play("run");
 				
-				parent.position = Vector2D.add(parent.position, desiredVelocitySeek);
+                if(distanceSeek > _minDistance)
+                    parent.position = Vector2D.add(parent.position, desiredVelocitySeek);
 			}
 		}
 		
