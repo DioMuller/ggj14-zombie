@@ -7,6 +7,7 @@ package zombie.entities
 	import net.flashpunk.FP;
 	import zombie.behaviors.DebugInfoBehavior;
 	import zombie.worlds.EndScreen;
+	import zombie.worlds.GameWorld;
 	
 	/**
 	 * ...
@@ -40,11 +41,19 @@ package zombie.entities
 		{
 			super.update();
 			
+			var world : GameWorld = (FP.world as GameWorld);
+			
 			timer -= FP.elapsed;
+			
+			
+			if ( timer < 30 && !world.IsEvil )
+			{
+				world.changeAlignment();
+			}
 			
 			if ( timer < 0 )
 			{
-				(FP.world as OgmoMap).stopMusic();
+				world.stopMusic();
 				FP.screen.scaleX = 1;
 				FP.screen.scaleY = 1;
 				FP.world = new EndScreen();

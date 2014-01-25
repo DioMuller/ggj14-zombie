@@ -18,26 +18,26 @@ package fplib.maping
 	public class OgmoMap extends World
 	{
 		//{ region Attributes
-		private var _mapWidth : int = 0;
-		private var _mapHeight : int = 0; 
-		private var _tileSize : int = 0;
+		protected var _mapWidth : int = 0;
+		protected var _mapHeight : int = 0; 
+		protected var _tileSize : int = 0;
 		
-		private var _background : Backdrop;
-		private var _backgroundEntity : Entity;
+		protected var _background : Backdrop;
+		protected var _backgroundEntity : Entity;
 		
-		private var _mapGrid : Grid;
-		private var _mapImage : Image;
-		private var _mapGridEntity : Entity;
+		protected var _mapGrid : Grid;
+		protected var _mapImage : Image;
+		protected var _mapGridEntity : Entity;
 		
-		private var _mainTileLayer : Tilemap;
-		private var _mainTileLayerEntity : Entity;
+		protected var _mainTileLayer : Tilemap;
+		protected var _mainTileLayerEntity : Entity;
 		
-		private var _secondaryTileLayer : Tilemap;
-		private var _secondaryTileLayerEntity : Entity;
+		protected var _secondaryTileLayer : Tilemap;
+		protected var _secondaryTileLayerEntity : Entity;
 		
-		private var _entityCreator : EntityCreator;
+		protected var _entityCreator : EntityCreator;
 		
-		private var _sfx : Sfx;
+		protected var _sfx : Sfx;
 		//} endregion Attributes
 		
 		//{ region Constructor
@@ -56,7 +56,7 @@ package fplib.maping
 		 * @param	secondaryTileSetAsset Secondary Tileset asset reference.
 		 * @param	backgroundAsset Background asset reference.
 		 */
-		private function createMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, bgmAsset : Class ) : void
+		protected function createMap( levelAsset : Class, mainTileSetAsset : Class, secondaryTileSetAsset : Class, backgroundAsset : Class, bgmAsset : Class ) : void
 		{
 			//TODO: Load from any number of tilesets?
 			

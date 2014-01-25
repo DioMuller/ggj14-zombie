@@ -11,6 +11,7 @@ package zombie
 		
 		/* TILESETS */
 		[Embed(source = "../../assets/images/tileset.png")] public static const IMAGE_TILESET : Class;
+		[Embed(source = "../../assets/images/tileset2.png")] public static const IMAGE_EVILTILE : Class;
 		
 		/* MAPS */
 		[Embed(source = "../../assets/maps/MainMap.oel", mimeType = "application/octet-stream")] public static const MAP_MAIN : Class;

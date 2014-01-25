@@ -33,6 +33,8 @@ package fplib.gui
 			_over = new Graphiclist(over, txt);
 			_pressed = new Graphiclist(pressed, txt);
 			
+			_normal.scrollX = _normal.scrollY = 0;
+			
 			graphic = _normal;
 			setHitbox(width, height);
 		}

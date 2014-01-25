@@ -25,8 +25,7 @@ package zombie.worlds
             textEntity.y = (FP.height/2)-(titleText.height/2);
             add(textEntity);
 			
-			var button : Button = new Button(
-			Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED,"New Game", FP.width/2 - 120, FP.height/2 - 40, 240, 80, NewGame);
+			var button : Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "New Game", 0, 0, 240, 80, NewGame); //FP.width/2 - 120, FP.height/2 - 40, 240, 80, NewGame);
 			
             var splashText:Text = new Text("POWER OF LOVE");
             splashText.color = 0x00ff00;
@@ -44,7 +43,7 @@ package zombie.worlds
                 FP.world = new GameWorld(
 						Assets.MAP_MAIN,
 						Assets.IMAGE_TILESET,
-						Assets.IMAGE_TILESET,
+						Assets.IMAGE_EVILTILE,
 						Assets.IMAGE_BACKGROUND,
 						new CustomCreator(),
 						Assets.MUSIC_BGM01);
