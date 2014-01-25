@@ -27,11 +27,13 @@ package zombie.behaviors
 			
 			if (Input.check("Back")) 
 			{ 
+                parent.animation.flipped = true;
 				parent.position.X -= (50 * FP.elapsed); 
 				moving = true; 			
 			}
 			if (Input.check("Front")) 
 			{ 
+                parent.animation.flipped = false;
 				parent.position.X += (50 * FP.elapsed); 
 				moving = true; 	
 			}

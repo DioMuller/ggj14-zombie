@@ -52,6 +52,7 @@ package zombie.entities
 					_hugging = 60;
 					
 					animation.play("hug");
+                    animation.flipped = p.animation.flipped;
 				}
 			}
 			else
