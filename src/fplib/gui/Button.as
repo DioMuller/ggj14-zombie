@@ -29,6 +29,10 @@ package fplib.gui
 			var pressed : Image = new Image(pressedAsset);
 			
 			var txt : Text = new Text(text);
+			txt.y = 8;
+			txt.width = width;
+			txt.height = height;
+			txt.align = "center";
             _normal = new Graphiclist(normal, txt);
 			_over = new Graphiclist(over, txt);
 			_pressed = new Graphiclist(pressed, txt);
