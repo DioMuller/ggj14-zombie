@@ -10,6 +10,7 @@ package zombie.worlds
 	import zombie.Assets;
 	import zombie.CustomCreator;
 	import zombie.entities.GameManager;
+    import fplib.gui.Button;
 	
 	/**
 	 * ...
@@ -24,28 +25,22 @@ package zombie.worlds
 			var titleText:Text = new Text("You 'saved' " + GameManager.score + " people.");
             var textEntity:Entity = new Entity(0,0,titleText);
             textEntity.x = (FP.width/2)-(titleText.width/2);
-            textEntity.y = (FP.height/2)-(titleText.height/2);
+            textEntity.y = (FP.height/2)-(titleText.height/2) - 60;
             add(textEntity);
-			
-			var titleText2:Text = new Text("Press X to Return to Title Screen");
-			var textEntity2:Entity = new Entity(0,0,titleText2);
-            textEntity2.x = (FP.width/2)-(titleText2.width/2);
-            textEntity2.y = (FP.height/2)-(titleText2.height/2) + 100;
-            add(textEntity2);
+            
+            var button : Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "Title Screen", FP.width / 2 - 64, FP.height / 2, 128, 32, ResetGame);
+			button.active = true;
+			add(button);
 			
 			_sfx = new Sfx(Assets.MUSIC_CREDITS);
 			_sfx.loop();
 		}
 		
-		override public function update():void 
+        public function ResetGame() : void
 		{
-            if (Input.check(Key.X)) 
-			{
-				_sfx.stop();
-                FP.world = new TitleScreen();
-            }
-        }
-		
+            _sfx.stop();
+            FP.world = new TitleScreen();
+		}
 	}
 
 }
