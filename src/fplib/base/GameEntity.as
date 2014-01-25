@@ -53,7 +53,7 @@ package fplib.base
 			/* Since I can't hide x and y, I'll update them or position if the other was changed. */
 			if ( position.HasChanged )
 			{
-				moveTo( position.X, position.Y, "solid", true );
+				moveTo( position.X, position.Y, ["solid", type], true );
 			}
 			else
 			{

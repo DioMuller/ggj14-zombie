@@ -28,11 +28,11 @@ package zombie.worlds
             textEntity.y = (FP.height/4*1.7)-(titleText.height/2) - 60;
             add(textEntity);
             
-			var titleText:Text = new Text("Movement: Keyboard Arrows or WASD\r\n");
-            var textEntity:Entity = new Entity(0,0,titleText);
-            textEntity.x = (FP.width/2)-(titleText.width/2);
-            textEntity.y = (FP.height/4*2.7)-(titleText.height/2) - 60;
-            add(textEntity);
+			var titleText2:Text = new Text("Movement: Keyboard Arrows or WASD\r\n");
+            var textEntity2:Entity = new Entity(0,0,titleText2);
+            textEntity2.x = (FP.width/2)-(titleText2.width/2);
+            textEntity2.y = (FP.height/4*2.7)-(titleText2.height/2) - 60;
+            add(textEntity2);
             
             
             var button : Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "Return", FP.width / 2 - 64, FP.height / 4 * 2.7, 128, 32, Return);

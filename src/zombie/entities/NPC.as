@@ -3,7 +3,7 @@ package zombie.entities
 	import fplib.base.GameEntity;
 	import net.flashpunk.graphics.Spritemap;
 	import zombie.Assets;
-	import zombie.behaviors.FleeBehavior;
+	import zombie.behaviors.ZombieBehavior;
 	import net.flashpunk.FP;
 	
 	/**
@@ -28,7 +28,7 @@ package zombie.entities
 			
 			setHitbox(8, 32, -8, 0);
 			
-			addBehavior(new FleeBehavior());
+			addBehavior(new ZombieBehavior());
 			
 			type = "enemy";
 			//addBehavior(new ControlableBehavior());

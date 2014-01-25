@@ -9,13 +9,13 @@ package zombie.behaviors
 	 * ...
 	 * @author Diogo Muller
 	 */
-	public class FleeBehavior extends Behavior
+	public class ZombieBehavior extends Behavior
 	{
 		private var _target : GameEntity = null;
 		
 		public var minimumDistance : Number = 100;
 		
-		public function FleeBehavior() 
+		public function ZombieBehavior() 
 		{
 			
 		}
@@ -44,6 +44,17 @@ package zombie.behaviors
 				}
 				
 				parent.position = Vector2D.add(parent.position, desiredVelocity);
+			}
+			else if ( parent.type == "npc" )
+			{
+				var desiredVelocitySeek : Vector2D = Vector2D.subtract(_target.position, parent.position);
+				var distanceSeek : Number = desiredVelocitySeek.Size;
+
+				desiredVelocitySeek.normalize();
+				desiredVelocitySeek = Vector2D.multiply(desiredVelocitySeek, FP.elapsed * 45);
+				parent.animation.play("run");
+				
+				parent.position = Vector2D.add(parent.position, desiredVelocitySeek);
 			}
 		}
 		
