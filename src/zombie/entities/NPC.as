@@ -60,8 +60,6 @@ package zombie.entities
 					y = p.y;
 					x = p.x;
 					
-					TurnIntoNPC();
-					
 					p.hug();
 					_hugging = true;
 					
@@ -71,8 +69,10 @@ package zombie.entities
 			}
 			else
 			{
-				if ((graphic as Spritemap).complete)
+                if ((graphic as Spritemap).complete) {
+                    TurnIntoNPC();
                     _hugging = false;
+                }
 			}
 		}
 		
