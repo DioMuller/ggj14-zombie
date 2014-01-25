@@ -3,6 +3,7 @@ package zombie.behaviors
 	import fplib.base.Behavior;
 	import fplib.math.Vector2D;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.FP;
@@ -49,11 +50,11 @@ package zombie.behaviors
 			
 			if ( moving )
 			{
-				parent.animation.play("run");
+				(parent.graphic as Spritemap).play("run");
 			}
 			else
 			{
-				parent.animation.play("stand");
+				(parent.graphic as Spritemap).play("stand");
 			}
 		}
 	}

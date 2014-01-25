@@ -136,6 +136,8 @@ package zombie.worlds
 				
 				_isEvil = true;
 			}
+			
+			
 		}
 		
 		public function get IsEvil( ) : Boolean

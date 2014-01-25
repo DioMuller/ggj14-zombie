@@ -6,6 +6,8 @@ package zombie.entities
 	import zombie.behaviors.CameraBehavior;
 	import zombie.Assets;
 	import zombie.behaviors.ControlableBehavior;
+	import net.flashpunk.FP;
+	import zombie.worlds.GameWorld;
 	
 	/**
 	 * ...
@@ -28,12 +30,12 @@ package zombie.entities
 			animation.add("hug", [9, 10, 11], 3, true);
 			animation.scale = 2;
 			
-			//_animationZombie = new Spritemap(Assets.SPRITE_MAIN_ZOMBIE, 16, 16);
-			/*_animationZombie.add("stand", [6, 7, 8], 10, true);
+			_animationZombie = new Spritemap(Assets.SPRITE_MAIN_ZOMBIE, 16, 16);
+			_animationZombie.add("stand", [6, 7, 8], 10, true);
 			_animationZombie.add("run", [0, 1, 2], 10, true);
 			_animationZombie.add("hug", [9, 10, 11], 3, true);
 			_animationZombie.scale = 2;
-			*/
+			
 			graphic = animation;
 			
 			setHitbox(8, 32, -8, 0);
@@ -46,6 +48,11 @@ package zombie.entities
 		
 		override public function update():void 
 		{
+			if (  ((FP.world as GameWorld).IsEvil && ! _isZombie) ||
+			(!(FP.world as GameWorld).IsEvil && _isZombie) )
+			{
+				revert();
+			}
 			if ( _hugging < 0 )
 			{
 				super.update();
@@ -59,7 +66,7 @@ package zombie.entities
 		
 		public function hug() : void
 		{
-			animation.play("hug");
+			(graphic as Spritemap).play("hug");
 			_hugging = 60;
 		}
 		
@@ -67,11 +74,11 @@ package zombie.entities
 		{
 			if ( _isZombie )
 			{
-				
+				graphic = animation;
 			}
 			else
 			{
-				
+				graphic = _animationZombie;
 			}
 			
 			_isZombie = !_isZombie;

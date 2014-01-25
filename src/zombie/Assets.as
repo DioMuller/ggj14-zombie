@@ -18,6 +18,7 @@ package zombie
 		
 		/* SPRITES */
 		[Embed(source = "../../assets/images/main-normal.png")] public static const SPRITE_MAIN_NORMAL : Class;
+		[Embed(source = "../../assets/images/main-zombie.png")] public static const SPRITE_MAIN_ZOMBIE : Class;
 		
 		[Embed(source = "../../assets/images/npc-normal.png")] public static const SPRITE_NPC_NORMAL : Class;
 		[Embed(source = "../../assets/images/npc-zombie.png")] public static const SPRITE_NPC_ZOMBIE : Class;

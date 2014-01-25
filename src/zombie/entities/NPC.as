@@ -5,6 +5,7 @@ package zombie.entities
 	import zombie.Assets;
 	import zombie.behaviors.ZombieBehavior;
 	import net.flashpunk.FP;
+	import zombie.worlds.GameWorld;
 	
 	/**
 	 * ...
@@ -13,6 +14,8 @@ package zombie.entities
 	public class NPC extends GameEntity
 	{
 		private var _hugging : int = 0;
+		protected var _isZombie : Boolean = false;
+		protected var _humanAnimation : Spritemap;
 		
 		public function NPC(x:Number, y:Number) 
 		{
@@ -24,6 +27,12 @@ package zombie.entities
 			animation.add("hug", [12, 13, 14], 3, true);
 			animation.scale = 2;
 			
+			_humanAnimation = new Spritemap(Assets.SPRITE_NPC_NORMAL, 16, 16);
+			_humanAnimation.add("stand", [6, 7, 8], 5, true);
+			_humanAnimation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
+			_humanAnimation.add("hug", [12, 13, 14], 3, true);
+			_humanAnimation.scale = 2;
+			
 			graphic = animation;
 			
 			setHitbox(8, 32, -8, 0);
@@ -31,7 +40,6 @@ package zombie.entities
 			addBehavior(new ZombieBehavior());
 			
 			type = "enemy";
-			//addBehavior(new ControlableBehavior());
 		}
 		
 		override public function update():void 
@@ -39,6 +47,12 @@ package zombie.entities
 			if ( _hugging == 0 )
 			{
 				super.update();
+				
+				if (  ((FP.world as GameWorld).IsEvil && ! _isZombie) ||
+				(!(FP.world as GameWorld).IsEvil && _isZombie) )
+				{
+					revert();
+				}
 				
 				if ( collide("player", x, y) && type == "enemy" )
 				{
@@ -51,7 +65,7 @@ package zombie.entities
 					p.hug();
 					_hugging = 60;
 					
-					animation.play("hug");
+					(graphic as Spritemap).play("hug");
 				}
 			}
 			else
@@ -64,17 +78,30 @@ package zombie.entities
 		{
 			type = "npc";
 			
-			animation = new Spritemap(Assets.SPRITE_NPC_NORMAL, 16, 16);
-			animation.add("stand", [6, 7, 8], 5, true);
-			animation.add("run", [0, 1, 2], 5, true);
-			animation.add("hug", [12, 13, 14], 3, true);
-			
-			
-			animation.scale = 2;
-			
 			GameManager.score++;
 			
-			graphic = animation;
+			if ( !_isZombie )
+			{
+				graphic = _humanAnimation;
+			}
+			else
+			{
+				graphic = animation;
+			}
+		}
+		
+		public function revert() : void
+		{
+			if ( (!_isZombie && type == "npc") || (_isZombie && type == "enemy") )
+			{
+				graphic = animation;
+			}
+			else
+			{
+				graphic = _humanAnimation;
+			}
+			
+			_isZombie = !_isZombie;
 		}
 		
 	}
