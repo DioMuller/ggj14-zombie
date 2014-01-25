@@ -19,10 +19,13 @@ package zombie.worlds
 		
 		public function TitleScreen() 
 		{
-			var button : Button = new Button(
+			var btStartGame : Button = new Button(
 			Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "New Game", FP.width / 2 - 64, FP.height / 2 - 60, 128, 32, NewGame);
-			button.active = true;
-			add(button);
+			add(btStartGame);
+            
+            var btHowToPlay : Button = new Button(
+			Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "How to Play", FP.width / 2 - 64, FP.height / 2 - 20, 128, 32, ShowHowToPlay);
+			add(btHowToPlay);
 			
             var splashText:Text = new Text("POWER OF LOVE");
             splashText.color = 0x00ff00;
@@ -42,6 +45,11 @@ package zombie.worlds
 						Assets.IMAGE_BACKGROUND,
 						new CustomCreator(),
 						Assets.MUSIC_BGM01);
+		}
+        
+        public function ShowHowToPlay() : void
+		{
+			FP.world = new HowToPlay();
 		}
 	}
 }
