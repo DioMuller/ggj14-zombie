@@ -22,7 +22,10 @@ package zombie.worlds
 		
 		public function EndScreen() 
 		{
-			var titleText:Text = new Text("You zombified " + GameManager.score + " people.");
+			var titleText:Text = new Text("Sorry if we, from Curitiba, look antisocial some times.\n" +
+										  "We're just afraid to be turned into zombies.\n" +
+										  "\n" +
+										  "You zombified " + GameManager.score + " people.");
             var textEntity:Entity = new Entity(0,0,titleText);
             textEntity.x = (FP.width/2)-(titleText.width/2);
             textEntity.y = (FP.height/2)-(titleText.height/2) - 60;
