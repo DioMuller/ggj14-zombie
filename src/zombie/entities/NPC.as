@@ -225,7 +225,7 @@ package zombie.entities
 		{
 			if (_baloonStr == "" || override)
 			{
-				_baloonStr = zombieNpcMessage[int(Math.random() * (zombieNpcMessage.length - 1))];
+				_baloonStr = zombieNpcMessage[int(Math.round(Math.random() * (zombieNpcMessage.length - 1)))];
 				_baloonTextTimer = 2;
 				_baloonText.color = 0xff5555;
 			}
@@ -235,7 +235,7 @@ package zombie.entities
 		{
 			if (_baloonStr == "" || override)
 			{
-				_baloonStr = zombieSavedMessage[int(Math.random() * (zombieSavedMessage.length - 1))];
+				_baloonStr = zombieSavedMessage[int(Math.round(Math.random() * (zombieSavedMessage.length - 1)))];
 				_baloonTextTimer = 2;
 				_baloonText.color = 0xffff00;
 			}
@@ -245,7 +245,7 @@ package zombie.entities
 		{
 			if (_baloonStr == "" || override)
 			{
-				_baloonStr = humanNpcMessage[int(Math.random() * (humanNpcMessage.length - 1))];
+				_baloonStr = humanNpcMessage[Math.round(int(Math.random() * (humanNpcMessage.length - 1)))];
 				_baloonTextTimer = 2;
 				_baloonText.color = 0xffff00;
 			}
@@ -255,7 +255,7 @@ package zombie.entities
 		{
 			if (_baloonStr == "" || override)
 			{
-				_baloonStr = humanZombifiedMessage[int(Math.random() * (humanZombifiedMessage.length - 1))];
+				_baloonStr = humanZombifiedMessage[int(Math.round(Math.random() * (humanZombifiedMessage.length - 1)))];
 				_baloonTextTimer = 2;
 				_baloonText.color = 0xff5555;
 			}
