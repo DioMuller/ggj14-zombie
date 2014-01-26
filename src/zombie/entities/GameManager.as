@@ -20,6 +20,11 @@ package zombie.entities
 		
 		public var _text : Text;
 		
+		public function get IsEvil() : Boolean
+		{
+			return (timer < 30);
+		}
+		
 		public function GameManager() 
 		{
 			reset();

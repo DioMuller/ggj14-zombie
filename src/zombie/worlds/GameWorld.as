@@ -25,8 +25,11 @@ package zombie.worlds
 	{
 		private var _gameManager : GameManager;
         private var _oldMan : OldMan;
-        private var _oldManText:Text;
-        private var _oldManTextEnt:Entity;
+        private var _oldManText : Text;
+        private var _oldManTextEnt : Entity;
+		
+		private var _statusText : Text;
+		private var _statusTextEnt : Entity;
 		
 		protected var _evilMainTile : Tilemap;		
 		protected var _evilSecondaryTile : Tilemap;
@@ -42,19 +45,34 @@ package zombie.worlds
             
             _oldManText = new Text("");
             _oldManText.size = 12;
-            _oldManText.color = 0x00ffff;
-            
+            _oldManText.color = 0xffffff;
+			
             _oldMan.layer = -1000;
             
             
+			_oldManText = new Text("");
+            _oldManText.size = 12;
+            _oldManText.color = 0xffffff;
+			
             _oldManTextEnt = new Entity(0, 0, _oldManText);
             _oldManTextEnt.graphic.scrollX = _oldManTextEnt.graphic.scrollY = 0;
 			_oldManTextEnt.layer = -1000;
+			
+			_statusText = new Text("");
+            _statusText.size = 12;
+            _statusText.color = 0xffffff;
+			
+			_statusTextEnt = new Entity( (FP.screen.width - _statusText.width - 10)/2, 10, _statusText );
+			_statusTextEnt.graphic.scrollX = _statusTextEnt.graphic.scrollY = 0;
+			_statusTextEnt.layer = -1000;
+			
             add(_oldManTextEnt);
             add(_gameManager);
             add(_oldMan);
+			add(_statusTextEnt);
             
             setOldMan(false, "Save as many people as you can!");
+			setStatusText("Your Vision");
 		}
         
         private function setOldMan(evil : Boolean, text : String) : void
@@ -66,6 +84,13 @@ package zombie.worlds
             _oldManTextEnt.x = _oldMan.x + _oldMan.width;
             _oldManTextEnt.y = _oldMan.y + (_oldMan.height - _oldManText.height)/ 2;
         }
+		
+		private function setStatusText(text : String) : void
+		{
+			_statusText.text = text;
+            _statusTextEnt.x = (FP.screen.width - (_statusText.width * 2) - 10) / 2;
+			_statusTextEnt.graphic = _statusText;
+		}
 		
 		//{ region Constructor Helper Methods
 		/**
@@ -158,6 +183,12 @@ package zombie.worlds
 			{
 				_mainTileLayerEntity.graphic = _mainTileLayer;
 				_secondaryTileLayerEntity.graphic = _secondaryTileLayer;
+				_oldManText.color = 0xffffff;
+				_statusText.color = 0xffffff;
+				
+				_sfx.stop();
+				_sfx = new Sfx(Assets.MUSIC_BGM04); //( int( Math.random() * 2 ) < 1 )? new Sfx(Assets.MUSIC_BGM03) : new Sfx(Assets.MUSIC_BGM02);
+				_sfx.play();
 				
 				_isEvil = false;
 			}
@@ -165,13 +196,17 @@ package zombie.worlds
 			{
 				_mainTileLayerEntity.graphic = _evilMainTile;
 				_secondaryTileLayerEntity.graphic = _evilSecondaryTile;
+				_oldManText.color = 0xff0000;
+				_statusText.color = 0xff0000;
+				_statusText.size = 16;
 				
 				_sfx.stop();
-				_sfx = ( int( Math.random() ) == 0 )? new Sfx(Assets.MUSIC_BGM03) : new Sfx(Assets.MUSIC_BGM04);
+				_sfx = new Sfx(Assets.MUSIC_BGM03); //( int( Math.random() * 2 ) < 1 )? new Sfx(Assets.MUSIC_BGM03) : new Sfx(Assets.MUSIC_BGM02);
 				_sfx.play();
 				
 				_isEvil = true;
                 setOldMan(true, "Get as many people as you can!");
+				setStatusText("Their Vision");
 			}
 		}
 		

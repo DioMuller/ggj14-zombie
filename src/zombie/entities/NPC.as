@@ -4,6 +4,7 @@ package zombie.entities
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.Sfx;
 	import zombie.Assets;
 	import zombie.behaviors.ZombieBehavior;
 	import net.flashpunk.FP;
@@ -23,6 +24,9 @@ package zombie.entities
 		private var zombieSavedMessage: Array;
 		private var humanNpcMessage: Array;
 		private var humanZombifiedMessage: Array;
+		
+		protected var _zombieSound : Sfx;
+		protected var _humanSound : Sfx;
 		
 		public var _baloonText:Text;
 		public var _baloonEntity:Entity;
@@ -46,6 +50,9 @@ package zombie.entities
 			_humanAnimation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
 			_humanAnimation.add("hug", [12, 13, 14], 3, false);
 			_humanAnimation.scale = 2;
+			
+			_zombieSound = new Sfx(Assets.SOUND_ZOMBIE);
+			_humanSound = new Sfx(Assets.SOUND_ZOMBIE);
 			
 			graphic = animation;
 			
@@ -131,13 +138,18 @@ package zombie.entities
 					p.hug();
 					_hugging = true;
 					
+					if( !_isZombie ) _zombieSound.play();
+					//else _humanSound.play();
+					
 					(graphic as Spritemap).play("hug");
                     (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
 					
-					if (!(FP.world as GameWorld).IsEvil) {
+					if (!(FP.world as GameWorld).IsEvil) 
+					{
 						randomZombieSavedMessage(true);
 					}
-					else {
+					else 
+					{
 						randomHumanZombifiedMessage(true);
 					}
 				}
@@ -159,7 +171,7 @@ package zombie.entities
 			
 			if ( !_isZombie )
 			{
-				graphic = _humanAnimation;
+				graphic = _humanAnimation;				
 			}
 			else
 			{

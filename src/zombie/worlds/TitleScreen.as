@@ -62,7 +62,7 @@ package zombie.worlds
 						Assets.IMAGE_EVILTILE,
 						Assets.IMAGE_BACKGROUND,
 						new CustomCreator(),
-						( int( Math.random() ) == 0 )? Assets.MUSIC_BGM01 : Assets.MUSIC_BGM02);
+						Assets.MUSIC_BGM04); // ( int( Math.random() * 2 ) < 1 )? Assets.MUSIC_BGM01 : Assets.MUSIC_BGM04);
 		}
         
         public function ShowHowToPlay() : void
