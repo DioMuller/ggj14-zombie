@@ -27,8 +27,8 @@ package zombie.entities
 		private var humanNpcMessage:Array;
 		private var humanZombifiedMessage:Array;
 		
-		protected var _zombieSound : Sfx;
-		protected var _humanSound : Sfx;
+		protected var _zombieSound:Sfx;
+		protected var _humanSound:Sfx;
 		
 		public var _baloonText:Text;
 		public var _baloonEntity:Entity;
@@ -38,7 +38,7 @@ package zombie.entities
 		private var _bloodEmitter:Emitter;
 		private var _loveEmitter:Emitter;
 		private var _loveEmitterCap:int;
-        private var _turnNpcDelay:int = -1;
+		private var _turnNpcDelay:int = -1;
 		
 		public function NPC(x:Number, y:Number)
 		{
@@ -59,7 +59,7 @@ package zombie.entities
 			_humanAnimation.scale = 2;
 			
 			_zombieSound = new Sfx(Assets.SOUND_ZOMBIE);
-			_humanSound = new Sfx( (num % 2 == 0 ) ? Assets.SOUND_HUMAN1 : Assets.SOUND_HUMAN2);
+			_humanSound = new Sfx((num % 2 == 0) ? Assets.SOUND_HUMAN1 : Assets.SOUND_HUMAN2);
 			
 			graphic = animation;
 			
@@ -131,11 +131,17 @@ package zombie.entities
 			}
 			
 			(_baloonEntity.graphic as Text).text = _baloonStr;
-            var p:Player = (FP.world.nearestToEntity("player", this, false) as Player);
-            (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
-            
-            if (_turnNpcDelay >= 0 && --_turnNpcDelay == 0)
-                TurnIntoNPC();
+			var p:Player = (FP.world.nearestToEntity("player", this, false) as Player);
+			if (!_hugging)
+			{
+				if (type == "npc")
+					(graphic as Spritemap).flipped = p.x < x;
+				else
+					(graphic as Spritemap).flipped = p.x > x;
+			}
+			
+			if (_turnNpcDelay >= 0 && --_turnNpcDelay == 0)
+				TurnIntoNPC();
 			
 			if (!_hugging)
 			{
@@ -153,34 +159,36 @@ package zombie.entities
 					
 					p.hug();
 					_hugging = true;
-                    _turnNpcDelay = 15;
+					_turnNpcDelay = 15;
 					
-					if( !_isZombie ) _zombieSound.play();
-					else _humanSound.play();
+					if (!_isZombie)
+						_zombieSound.play();
+					else
+						_humanSound.play();
 					
 					(graphic as Spritemap).play("hug");
 				}
 			}
 			else
 			{
-                if (_turnNpcDelay > 0 && _turnNpcDelay < 13)
-                {
-                    if (!(FP.world as GameWorld).IsEvil)
-                    {
-                        if (_loveEmitterCap-- <= 0)
-                        {
-                            _loveEmitter.emit("heart", x + (graphic as Spritemap).width / 2, y + 10);
-                            _loveEmitterCap = 3;
-                        }
-                    }
-                    else
-                    {
-                        if ((graphic as Spritemap).flipped)
-                            _bloodEmitter.emit("leftblood", x + (graphic as Spritemap).width / 2, y + 10);
-                        else
-                            _bloodEmitter.emit("rightblood", x + (graphic as Spritemap).width * 1.25, y + 10);
-                    }
-                }
+				if (_turnNpcDelay > 0 && _turnNpcDelay < 13)
+				{
+					if (!(FP.world as GameWorld).IsEvil)
+					{
+						if (_loveEmitterCap-- <= 0)
+						{
+							_loveEmitter.emit("heart", x + (graphic as Spritemap).width / 2, y + 10);
+							_loveEmitterCap = 3;
+						}
+					}
+					else
+					{
+						if ((graphic as Spritemap).flipped)
+							_bloodEmitter.emit("leftblood", x + (graphic as Spritemap).width / 2, y + 10);
+						else
+							_bloodEmitter.emit("rightblood", x + (graphic as Spritemap).width * 1.25, y + 10);
+					}
+				}
 				
 				if ((graphic as Spritemap).complete)
 				{
@@ -197,21 +205,21 @@ package zombie.entities
 			
 			if (!_isZombie)
 			{
-				graphic = _humanAnimation;				
+				graphic = _humanAnimation;
 			}
 			else
 			{
 				graphic = animation;
 			}
-            
-            if (!(FP.world as GameWorld).IsEvil)
-            {
-                randomZombieSavedMessage(true);
-            }
-            else
-            {
-                randomHumanZombifiedMessage(true);
-            }
+			
+			if (!(FP.world as GameWorld).IsEvil)
+			{
+				randomZombieSavedMessage(true);
+			}
+			else
+			{
+				randomHumanZombifiedMessage(true);
+			}
 		}
 		
 		public function revert():void
