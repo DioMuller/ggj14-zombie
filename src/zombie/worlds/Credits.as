@@ -29,7 +29,7 @@ package zombie.worlds
 			CreateCategory("Game Design", "Diogo Muller de Miranda\r\nRicardo Takeda");
 			CreateCategory("Developers ", "Diogo Muller de Miranda\r\nJoao Vitor Pietsiaki Moraes\r\nErik Onuki");
 			CreateCategory("Game Art", "Diogo Muller de Miranda\r\nRicardo Takeda");
-			CreateCategory("Music", "Ricardo Takeda");
+			CreateCategory("Music and Sound Effects", "Ricardo Takeda");
 			
 			var button:Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "Return", FP.width / 2 - 64, textBasePosY + 20, 128, 32, Return);
 			button.active = true;

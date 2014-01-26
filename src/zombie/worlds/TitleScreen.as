@@ -67,7 +67,7 @@ package zombie.worlds
         
         public function ShowHowToPlay() : void
 		{
-			//_sfx.stop();
+			_sfx.stop();
 			FP.world = new HowToPlay();
 		}
         
