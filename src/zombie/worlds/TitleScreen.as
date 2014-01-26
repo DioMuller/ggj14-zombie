@@ -1,6 +1,7 @@
 package zombie.worlds 
 {
 	import fplib.gui.Button;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
     import net.flashpunk.Entity;
     import net.flashpunk.FP;
@@ -16,6 +17,7 @@ package zombie.worlds
 	 */
 	public class TitleScreen extends World
 	{
+		private var _sfx : Sfx;
 		
 		public function TitleScreen() 
 		{
@@ -46,26 +48,32 @@ package zombie.worlds
             infoEntity.x = (FP.width/2)-(infoText.width/2);
             infoEntity.y = 500;
             add(infoEntity);
+			
+			_sfx = new Sfx(( int( Math.random() * 10 ) != 0 )? Assets.MUSIC_OPENING : Assets.MUSIC_EASTEREGG);
+			_sfx.loop();
 		}
 		
 		public function NewGame() : void
 		{
+			_sfx.stop();
 			FP.world = new GameWorld(
 						Assets.MAP_MAIN,
 						Assets.IMAGE_TILESET,
 						Assets.IMAGE_EVILTILE,
 						Assets.IMAGE_BACKGROUND,
 						new CustomCreator(),
-						Assets.MUSIC_BGM01);
+						( int( Math.random() ) == 0 )? Assets.MUSIC_BGM01 : Assets.MUSIC_BGM02);
 		}
         
         public function ShowHowToPlay() : void
 		{
+			//_sfx.stop();
 			FP.world = new HowToPlay();
 		}
         
         public function ShowCredits() : void
 		{
+			_sfx.stop();
 			FP.world = new Credits();
 		}
 	}

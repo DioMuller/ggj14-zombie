@@ -39,7 +39,7 @@ package zombie.entities
 			graphic = animation;
 			
 			setHitbox(8, 32, -8, 0);
-			layer = -2000;
+			layer = -1;
 			type = "player";
 			
 			addBehavior(new CameraBehavior());

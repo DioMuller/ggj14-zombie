@@ -43,6 +43,11 @@ package zombie
 		/* MUSIC */
 		[Embed(source = "../../assets/music/mus loop.mp3")] public static const MUSIC_BGM01 : Class;
 		[Embed(source = "../../assets/music/zumclov.mp3")] public static const MUSIC_CREDITS : Class;
+		[Embed(source = "../../assets/music/arp1.mp3")] public static const MUSIC_BGM02 : Class;
+		[Embed(source = "../../assets/music/bal loop.mp3")] public static const MUSIC_BGM03 : Class;
+		[Embed(source = "../../assets/music/night.mp3")] public static const MUSIC_BGM04 : Class;
+		[Embed(source = "../../assets/music/parapira.mp3")] public static const MUSIC_OPENING : Class;
+		[Embed(source="../../assets/music/ariparap.mp3")] public static const MUSIC_EASTEREGG : Class;
 	}
 
 }

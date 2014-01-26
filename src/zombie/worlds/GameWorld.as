@@ -15,6 +15,7 @@ package zombie.worlds
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.masks.Grid;
     import zombie.entities.OldMan;
+	import zombie.Assets;
 	
 	/**
 	 * ...
@@ -41,7 +42,7 @@ package zombie.worlds
             
             _oldManText = new Text("");
             _oldManText.size = 12;
-            _oldManText.color = 0x00ff00;
+            _oldManText.color = 0x00ffff;
             
             _oldMan.layer = -1000;
             
@@ -164,6 +165,10 @@ package zombie.worlds
 			{
 				_mainTileLayerEntity.graphic = _evilMainTile;
 				_secondaryTileLayerEntity.graphic = _evilSecondaryTile;
+				
+				_sfx.stop();
+				_sfx = ( int( Math.random() ) == 0 )? new Sfx(Assets.MUSIC_BGM03) : new Sfx(Assets.MUSIC_BGM04);
+				_sfx.play();
 				
 				_isEvil = true;
                 setOldMan(true, "Get as many people as you can!");

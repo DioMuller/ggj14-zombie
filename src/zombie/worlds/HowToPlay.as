@@ -18,7 +18,7 @@ package zombie.worlds
 	 */
 	public class HowToPlay extends World
 	{
-		private var _sfx : Sfx;
+		
 		
 		public function HowToPlay() 
 		{
@@ -38,14 +38,11 @@ package zombie.worlds
             var button : Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "Return", FP.width / 2 - 64, FP.height / 4 * 2.7, 128, 32, Return);
 			button.active = true;
 			add(button);
-			
-			_sfx = new Sfx(Assets.MUSIC_CREDITS);
-			_sfx.loop();
 		}
 		
         public function Return() : void
 		{
-            _sfx.stop();
+            //_sfx.stop();
             FP.world = new TitleScreen();
 		}
 	}
