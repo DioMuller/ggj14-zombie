@@ -52,7 +52,7 @@ package zombie.entities
 			_humanAnimation.scale = 2;
 			
 			_zombieSound = new Sfx(Assets.SOUND_ZOMBIE);
-			_humanSound = new Sfx(Assets.SOUND_ZOMBIE);
+			_humanSound = new Sfx( (num % 2 == 0 ) ? Assets.SOUND_HUMAN1 : Assets.SOUND_HUMAN2);
 			
 			graphic = animation;
 			
@@ -139,7 +139,7 @@ package zombie.entities
 					_hugging = true;
 					
 					if( !_isZombie ) _zombieSound.play();
-					//else _humanSound.play();
+					else _humanSound.play();
 					
 					(graphic as Spritemap).play("hug");
                     (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;

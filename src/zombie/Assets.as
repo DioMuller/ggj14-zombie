@@ -54,6 +54,8 @@ package zombie
 		
 		/* SOUND EFFECTS */
 		[Embed(source = "../../assets/sounds/zombie01.mp3")] public static const SOUND_ZOMBIE : Class;
+		[Embed(source = "../../assets/sounds/no1.mp3")] public static const SOUND_HUMAN1 : Class;
+		[Embed(source="../../assets/sounds/no2.mp3")] public static const SOUND_HUMAN2 : Class;
 	}
 
 }
