@@ -38,6 +38,13 @@ package zombie.worlds
 			_sfx = new Sfx(Assets.MUSIC_CREDITS);
 			_sfx.loop();
 		}
+        
+        override public function update():void 
+        {
+            super.update();
+            if (Input.check(Key.ESCAPE))
+                ResetGame();
+        }
 		
         public function ResetGame() : void
 		{

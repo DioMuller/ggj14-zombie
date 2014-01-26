@@ -52,6 +52,13 @@ package zombie.worlds
 			_sfx = new Sfx(( int( Math.random() * 10 ) != 0 )? Assets.MUSIC_OPENING : Assets.MUSIC_EASTEREGG);
 			_sfx.loop();
 		}
+        
+        override public function update():void 
+        {
+            super.update();
+            if (Input.check(Key.ENTER))
+                NewGame();
+        }
 		
 		public function NewGame() : void
 		{

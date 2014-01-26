@@ -41,6 +41,13 @@ package zombie.worlds
 			button.active = true;
 			add(button);
 		}
+        
+        override public function update():void 
+        {
+            super.update();
+            if (Input.check(Key.ESCAPE))
+                Return();
+        }
 		
         public function Return() : void
 		{
