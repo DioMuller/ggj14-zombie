@@ -1,5 +1,6 @@
 package zombie.worlds
 {
+	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
 	import net.flashpunk.Entity;
@@ -34,6 +35,58 @@ package zombie.worlds
 			var button:Button = new Button(Assets.BUTTON_NORMAL, Assets.BUTTON_OVER, Assets.BUTTON_PRESSED, "Return", FP.width / 2 - 64, textBasePosY + 20, 128, 32, Return);
 			button.active = true;
 			add(button);
+			
+			var x : Number = 80;
+			var y : Number = 80;
+			
+			var map : Spritemap;
+			var ent : Entity;
+			var img : Class;
+			
+			for each( img in Assets.SPRITE_NPC_ZOMBIE )
+			{
+				map = new Spritemap(img, 16, 16);
+				map.add("dance", [0, 1, 2, 3, 4, 5], 5, true);
+				map.scale = 4;
+				map.play("dance", true);
+				
+				ent = new Entity( x, y, map );
+				add( ent );
+				
+				y += 80;
+			}
+			
+			map = new Spritemap(Assets.SPRITE_MAIN_ZOMBIE, 16, 16);
+			map.add("dance", [0, 1, 2, 3, 4, 5], 5, true);
+			map.scale = 4;
+			map.play("dance", true);
+			
+			ent = new Entity( x, y, map );
+			add( ent );
+			
+			x = 160;
+			y = 80;			
+			
+			for each( img in Assets.SPRITE_NPC_NORMAL )
+			{
+				map = new Spritemap(img, 16, 16);
+				map.add("dance", [5, 4, 3, 2, 1, 0], 5, true);
+				map.scale = 4;
+				map.play("dance", true);
+				
+				ent = new Entity( x, y, map );
+				add( ent );
+				
+				y += 80;
+			}
+			
+			map = new Spritemap(Assets.SPRITE_MAIN_NORMAL, 16, 16);
+			map.add("dance", [5, 4, 3, 2, 1, 0], 5, true);
+			map.scale = 4;
+			map.play("dance", true);
+			
+			ent = new Entity( x, y, map );
+			add( ent );
 			
 			_sfx = new Sfx(Assets.MUSIC_CREDITS);
 			_sfx.loop();
