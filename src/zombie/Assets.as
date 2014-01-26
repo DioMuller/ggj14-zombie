@@ -34,6 +34,9 @@ package zombie
 		public static var SPRITE_NPC_NORMAL : Array = [SPRITE_NPC_NORMAL_01, SPRITE_NPC_NORMAL_02, SPRITE_NPC_NORMAL_03, SPRITE_NPC_NORMAL_04];
 		public static var SPRITE_NPC_ZOMBIE : Array = [SPRITE_NPC_ZOMBIE_01, SPRITE_NPC_ZOMBIE_02, SPRITE_NPC_ZOMBIE_03, SPRITE_NPC_ZOMBIE_04];
 		
+		/* PARTICLES */
+		[Embed(source = "../../assets/images/heart.png")] public static const PARTICLE_HEART : Class;
+		[Embed(source = "../../assets/images/blood.png")] public static const PARTICLE_BLOOD : Class;
 		
 		/* BUTTON */
 		[Embed(source = "../../assets/images/ButtonBase.png")] public static const BUTTON_NORMAL : Class;
@@ -47,7 +50,10 @@ package zombie
 		[Embed(source = "../../assets/music/bal loop.mp3")] public static const MUSIC_BGM03 : Class;
 		[Embed(source = "../../assets/music/night.mp3")] public static const MUSIC_BGM04 : Class;
 		[Embed(source = "../../assets/music/parapira.mp3")] public static const MUSIC_OPENING : Class;
-		[Embed(source="../../assets/music/ariparap.mp3")] public static const MUSIC_EASTEREGG : Class;
+		[Embed(source = "../../assets/music/ariparap.mp3")] public static const MUSIC_EASTEREGG : Class;
+		
+		/* SOUND EFFECTS */
+		[Embed(source = "../../assets/sounds/zombie01.mp3")] public static const SOUND_ZOMBIE : Class;
 	}
 
 }
