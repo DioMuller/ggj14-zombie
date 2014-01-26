@@ -38,6 +38,7 @@ package zombie.entities
 		private var _bloodEmitter:Emitter;
 		private var _loveEmitter:Emitter;
 		private var _loveEmitterCap:int;
+        private var _turnNpcDelay:int = -1;
 		
 		public function NPC(x:Number, y:Number)
 		{
@@ -47,13 +48,13 @@ package zombie.entities
 			
 			animation = new Spritemap(Assets.SPRITE_NPC_ZOMBIE[num], 16, 16);
 			animation.add("stand", [6, 7, 8], 5, true);
-			animation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
+			animation.add("run", [0, 1, 2, 1], 5, true);
 			animation.add("hug", [12, 13, 14], 3, false);
 			animation.scale = 2;
 			
 			_humanAnimation = new Spritemap(Assets.SPRITE_NPC_NORMAL[num], 16, 16);
 			_humanAnimation.add("stand", [6, 7, 8], 5, true);
-			_humanAnimation.add("run", [0, 1, 2, 3, 4, 5], 5, true);
+			_humanAnimation.add("run", [0, 1, 2, 1], 5, true);
 			_humanAnimation.add("hug", [12, 13, 14], 3, false);
 			_humanAnimation.scale = 2;
 			
@@ -130,6 +131,11 @@ package zombie.entities
 			}
 			
 			(_baloonEntity.graphic as Text).text = _baloonStr;
+            var p:Player = (FP.world.nearestToEntity("player", this, false) as Player);
+            (graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
+            
+            if (_turnNpcDelay >= 0 && --_turnNpcDelay == 0)
+                TurnIntoNPC();
 			
 			if (!_hugging)
 			{
@@ -142,50 +148,42 @@ package zombie.entities
 				
 				if (collide("player", x, y) && type == "enemy")
 				{
-					var p:Player = (FP.world.nearestToEntity("player", this, false) as Player);
 					y = p.y;
 					x = p.x;
 					
 					p.hug();
 					_hugging = true;
+                    _turnNpcDelay = 15;
 					
 					if( !_isZombie ) _zombieSound.play();
 					else _humanSound.play();
 					
 					(graphic as Spritemap).play("hug");
-					(graphic as Spritemap).flipped = (p.graphic as Spritemap).flipped;
-					
-					if (!(FP.world as GameWorld).IsEvil)
-					{
-						randomZombieSavedMessage(true);
-					}
-					else
-					{
-						randomHumanZombifiedMessage(true);
-					}
 				}
 			}
 			else
 			{
-				if (!(FP.world as GameWorld).IsEvil)
-				{
-					if (_loveEmitterCap-- <= 0)
-					{
-						_loveEmitter.emit("heart", x + (graphic as Spritemap).width / 2, y + 10);
-						_loveEmitterCap = 3;
-					}
-				}
-				else
-				{
-					if ((graphic as Spritemap).flipped)
-						_bloodEmitter.emit("leftblood", x + (graphic as Spritemap).width / 2, y + 10);
-					else
-						_bloodEmitter.emit("rightblood", x + (graphic as Spritemap).width * 1.25, y + 10);
-				}
+                if (_turnNpcDelay > 0 && _turnNpcDelay < 13)
+                {
+                    if (!(FP.world as GameWorld).IsEvil)
+                    {
+                        if (_loveEmitterCap-- <= 0)
+                        {
+                            _loveEmitter.emit("heart", x + (graphic as Spritemap).width / 2, y + 10);
+                            _loveEmitterCap = 3;
+                        }
+                    }
+                    else
+                    {
+                        if ((graphic as Spritemap).flipped)
+                            _bloodEmitter.emit("leftblood", x + (graphic as Spritemap).width / 2, y + 10);
+                        else
+                            _bloodEmitter.emit("rightblood", x + (graphic as Spritemap).width * 1.25, y + 10);
+                    }
+                }
 				
 				if ((graphic as Spritemap).complete)
 				{
-					TurnIntoNPC();
 					_hugging = false;
 				}
 			}
@@ -205,6 +203,15 @@ package zombie.entities
 			{
 				graphic = animation;
 			}
+            
+            if (!(FP.world as GameWorld).IsEvil)
+            {
+                randomZombieSavedMessage(true);
+            }
+            else
+            {
+                randomHumanZombifiedMessage(true);
+            }
 		}
 		
 		public function revert():void
